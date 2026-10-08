@@ -1,0 +1,22 @@
+{
+  "name": "uj_duplaasz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mobile-menu.js",
+"scripts": {
+  "dev": "tailwindcss -i ./css/input.css -o ./css/output.css --watch",
+  "build": "tailwindcss -i ./css/input.css -o ./css/output.css --minify"
+},
+"overrides": {
+  "@parcel/watcher": "2.6.0"
+},
+"keywords": [],
+"author": "",
+"license": "ISC",
+"type": "commonjs",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/forms": "^0.5.11",
+    "tailwindcss": "^4.3.3"
+  }
+}

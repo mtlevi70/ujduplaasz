@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+
+<html class="light" lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DuplaÁsz - Galéria</title>
+<link rel="stylesheet" href="./css/output.css">
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;800&amp;family=Work+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config" type="text/plain">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c4c6cc",
+                        "on-tertiary-fixed-variant": "#44474b",
+                        "surface-container-low": "#f3f3f3",
+                        "secondary-container": "#e2dfde",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "surface-bright": "#f9f9f9",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e2e2e2",
+                        "inverse-on-surface": "#f1f1f1",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "background": "#f9f9f9",
+                        "on-surface-variant": "#5e3f3b",
+                        "on-surface": "#1a1c1c",
+                        "surface-container-high": "#e8e8e8",
+                        "primary-fixed-dim": "#ffb4aa",
+                        "secondary": "#5f5e5e",
+                        "outline-variant": "#e9bcb6",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#6e7176",
+                        "surface-variant": "#e2e2e2",
+                        "tertiary-fixed": "#e0e2e8",
+                        "primary-fixed": "#ffdad5",
+                        "on-primary-fixed-variant": "#930007",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474746",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-tertiary-fixed": "#181c20",
+                        "primary": "#b5000b",
+                        "on-primary-container": "#fff5f3",
+                        "surface-tint": "#c0000c",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#f4f6fc",
+                        "inverse-surface": "#2f3131",
+                        "on-background": "#1a1c1c",
+                        "on-secondary-container": "#636262",
+                        "tertiary": "#55595d",
+                        "on-primary-fixed": "#410001",
+                        "inverse-primary": "#ffb4aa",
+                        "outline": "#936e69",
+                        "surface-container": "#eeeeee",
+                        "primary-container": "#e30613",
+                        "surface": "#f9f9f9",
+                        "surface-dim": "#dadada",
+                        "on-secondary-fixed": "#1c1b1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-desktop": "64px",
+                        "section-gap": "80px",
+                        "base": "8px",
+                        "gutter": "24px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Work Sans"],
+                        "headline-md": ["Chivo"],
+                        "headline-lg": ["Chivo"],
+                        "headline-lg-mobile": ["Chivo"],
+                        "body-lg": ["Work Sans"],
+                        "display-lg": ["Chivo"],
+                        "body-md": ["Work Sans"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .filter-btn.active,
+        .filter-btn.active:hover {
+            background-color: #b5000b;
+            color: #ffffff;
+            border-color: #b5000b;
+        }
+
+        html {
+            scrollbar-gutter: stable;
+        }
+
+        [data-gallery-viewport] {
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        [data-gallery-grid] {
+            align-items: start;
+            align-content: start;
+        }
+
+        .gallery-item[hidden] {
+            display: none;
+        }
+
+        [data-lightbox][hidden] {
+            display: none;
+        }
+
+        .gallery-image {
+            position: relative;
+            aspect-ratio: 4 / 3;
+        }
+
+        .gallery-image img {
+            position: absolute;
+            inset: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-surface-bright text-on-background min-h-screen flex flex-col font-body-md antialiased">
+<!-- TopAppBar (Mobile) -->
+<header class="fixed top-0 w-full z-50 border-b border-outline-variant bg-surface/95 backdrop-blur-sm flex justify-between items-center px-margin-mobile h-16 lg:hidden">
+<button aria-label="Menü" aria-expanded="false" aria-controls="mobile-menu" data-mobile-menu-toggle class="text-on-surface-variant hover:text-primary-container transition-colors opacity-80 material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</button>
+<span class="font-headline-md text-headline-md-mobile font-bold tracking-tight text-primary"><a href="index.html"><img class="w-2/3" src="images/header_logo.png" alt="Duplaász"></a></span>
+<a class="text-on-surface-variant hover:text-primary-container transition-colors material-symbols-outlined inline-flex" href="shop.html#elerhetoseg" style="font-variation-settings: 'FILL' 0;">location_on</a>
+</header>
+<div data-mobile-menu-backdrop class="fixed inset-0 z-[60] bg-black/45 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"></div>
+<aside id="mobile-menu" data-mobile-menu aria-label="Mobil navigáció" aria-hidden="true" class="fixed inset-y-0 left-0 z-[70] flex w-[min(86vw,360px)] -translate-x-full flex-col bg-surface p-5 shadow-xl transition-transform duration-300 lg:hidden">
+<div class="flex items-center justify-between border-b border-outline-variant pb-4 text-primary font-headline-md text-headline-md font-bold"><span><img src="images/header_logo.png" class="w-2/3" alt="Duplaász"></span><button type="button" aria-label="Menü bezárása" data-mobile-menu-close class="text-3xl leading-none text-on-surface">&times;</button></div><nav aria-label="Fő navigáció" class="flex flex-col gap-1 pt-4"><a href="index.html" class="flex items-center gap-4 rounded px-3 py-3 text-on-surface font-normal hover:bg-surface-container-low hover:text-primary"><span class="material-symbols-outlined">home</span>Főoldal</a><a href="services.html" class="flex items-center gap-4 rounded px-3 py-3 text-on-surface font-normal hover:bg-surface-container-low hover:text-primary"><span class="material-symbols-outlined">build</span>Szolgáltatások</a><a href="shop.html" class="flex items-center gap-4 rounded px-3 py-3 text-on-surface font-normal hover:bg-surface-container-low hover:text-primary"><span class="material-symbols-outlined">storefront</span>Bolt</a><a href="gallery.html" class="flex items-center gap-4 rounded px-3 py-3 text-primary font-normal"><span class="material-symbols-outlined">photo_library</span>Galéria</a><a href="shop.html#elerhetoseg" class="flex items-center gap-4 rounded px-3 py-3 text-on-surface font-normal hover:bg-surface-container-low hover:text-primary"><span class="material-symbols-outlined">location_on</span>Elérhetőség</a></nav><div class="mt-auto border-t border-outline-variant pt-6"><a href="services.html#ajanlat" class="flex items-center justify-center gap-2 rounded bg-primary px-6 py-3 font-label-md text-label-md uppercase tracking-wider text-on-primary hover:bg-surface-tint"><span class="material-symbols-outlined">description</span>Árajánlatkérés</a></div></aside>
+<!-- Top Navigation (Desktop) -->
+<nav class="hidden lg:flex justify-between items-center px-margin-desktop h-24 border-b border-outline-variant bg-surface/95 backdrop-blur-sm sticky top-0 z-50">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary"><a href="index.html"><img class="w-3/4" src="images/header_logo.png" alt="Duplaász"></a></span>
+<div class="flex gap-gutter">
+<a class="font-label-md text-label-md text-on-surface font-normal hover:text-primary-container transition-colors" href="index.html">Főoldal</a>
+<a class="font-label-md text-label-md text-on-surface font-normal hover:text-primary-container transition-colors" href="services.html">Szolgáltatások</a>
+<a class="font-label-md text-label-md text-on-surface font-normal hover:text-primary-container transition-colors" href="shop.html">Bolt</a>
+<a class="font-label-md text-label-md text-primary font-normal hover:text-primary-container transition-colors border-b-2 border-primary" href="gallery.html">Galéria</a>
+</div>
+<div class="ml-8 flex shrink-0 items-center gap-4">
+<a class="text-primary hover:text-primary-container transition-colors material-symbols-outlined inline-flex" href="shop.html#elerhetoseg" style="font-variation-settings: 'FILL' 0;">location_on</a>
+<a class="inline-flex whitespace-nowrap bg-primary px-6 py-3 text-on-primary rounded font-label-md text-label-md uppercase tracking-wider hover:bg-surface-tint transition-colors" href="services.html#ajanlat">Kérjen Ajánlatot</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow flex w-full flex-col items-center bg-surface-container-low">
+<!-- Hero Section -->
+<section class="w-full bg-surface-container-lowest px-margin-mobile py-section-gap md:px-margin-desktop">
+<div class="text-center">
+<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-surface mb-6">Projekt Galéria</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl mx-auto">
+                Fedezze fel legújabb munkáinkat. A klasszikus járművektől a különleges egyházi bútorokig, minden darabot a legmagasabb szintű precizitással és szakértelemmel állítunk helyre.
+            </p>
+</div>
+<!-- Filters -->
+<div class="mt-12 flex flex-wrap justify-center gap-4">
+<button type="button" data-filter="all" aria-pressed="true" class="filter-btn active px-6 py-2 rounded-full border border-outline-variant font-label-md text-label-md transition-colors hover:bg-surface-container-high text-on-surface">Összes</button>
+<button type="button" data-filter="vehicle" aria-pressed="false" class="filter-btn px-6 py-2 rounded-full border border-outline-variant font-label-md text-label-md transition-colors hover:bg-surface-container-high text-on-surface">Jármű</button>
+<button type="button" data-filter="furniture" aria-pressed="false" class="filter-btn px-6 py-2 rounded-full border border-outline-variant font-label-md text-label-md transition-colors hover:bg-surface-container-high text-on-surface">Bútor</button>
+<button type="button" data-filter="church" aria-pressed="false" class="filter-btn px-6 py-2 rounded-full border border-outline-variant font-label-md text-label-md transition-colors hover:bg-surface-container-high text-on-surface">Egyházi</button>
+<button type="button" data-filter="special" aria-pressed="false" class="filter-btn px-6 py-2 rounded-full border border-outline-variant font-label-md text-label-md transition-colors hover:bg-surface-container-high text-on-surface">Különlegességek</button>
+</div>
+</section>
+<!-- Gallery Grid -->
+<div data-gallery-viewport class="w-full px-margin-mobile py-section-gap md:px-margin-desktop bg-surface-container-lowest">
+<section data-gallery-grid class="max-w-7xl mx-auto grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+<!-- Item 1 (Jármű) -->
+<div data-category="vehicle" class="gallery-item group relative overflow-hidden rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer">
+<div class="gallery-image w-full overflow-hidden">
+<img alt="Classic car interior" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_qZkexTneZBG82Ndl9mPczHeCN-jcllVNWK87B1F1BCYtqvUa3Eg5A-KY10lBH0LIC_PJio75BqGWlkiFCxpWW7eOS6SLq8rMVl-2YV52ivDCd0bC0GIRFkC1NRG1u1NqzpANW_htai4dfAtLKMPpqHqnLyd1gB6K9k6sXg1x528UkbEQhUhqJyBNoEVIElKnPUXh7H4G0uUsQ-qQemA9SdukL_XXFI4dNaXJ-SAqHLkXc0E0F6wpmer4U46W7Th7BYgwbqMznA"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+<span class="inline-block px-3 py-1 bg-surface-container-low text-on-surface font-label-md text-[12px] uppercase tracking-wider rounded-sm mb-2 w-max">Teljes restauráció</span>
+<h3 class="font-headline-md text-headline-md text-on-primary">Klasszikus Autó Belső</h3>
+</div>
+</div>
+<!-- Item 2 (Egyházi) -->
+<div data-category="church" class="gallery-item group relative overflow-hidden rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer">
+<div class="gallery-image w-full overflow-hidden">
+<img alt="Ornate church furniture" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWcjMbJ88kadFMZL1BorFhU6ALlu3AtFcFTrKPMMN4KvB3GHRLrObbF5ZEROQAR9tMypb1143RntAWpWRRm5rvq7Klis3-l9JiYe_m0qlWZgc2h0ZSp3EC42WJWy18gpd6vcWwdV5NMY0J-9Ue1br2wJWetdqkQPG3KoKy12gzAP95W7xdqfgyX5Aj6joRdwIAaWcxkVbRT3UdN-YzAASyYSEN17oEhxIOlgnbeRvtJFHxzmHRGiu6-kOuRvUM_EHDMFAqImgq4A"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+<span class="inline-block px-3 py-1 bg-surface-container-low text-on-surface font-label-md text-[12px] uppercase tracking-wider rounded-sm mb-2 w-max">Konzerválás</span>
+<h3 class="font-headline-md text-headline-md text-on-primary">Antik Tabernákulum</h3>
+</div>
+</div>
+<!-- Item 3 (Jármű - Hajó) -->
+<div data-category="vehicle" class="gallery-item group relative overflow-hidden rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer">
+<div class="gallery-image w-full overflow-hidden">
+<img alt="Luxury boat interior" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGkX843G54xbVIO_OlRZ5ukT7Wl3J0w3vrCHVNKwyKbQEbVFHHMu0S-bzIsrLqBsmlfUDYcR9oliloEvBJBG1jhQXl11Vp2sF325842AyxRnJfVCGoNIp-zLza3IIqwR68c5XRCwajGFyQhrCHpIwcLUIN3irAuiVN1lil6j7N4Vht0BUDM9x5llKvekGew06VYsWW3P7ih2VgMPhls0WVnxXILq4A0HOE5Xm5O3azlh2rjBtwatFxR8xJIBXQ0fKM_VNZTuFvaw"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+<span class="inline-block px-3 py-1 bg-surface-container-low text-on-surface font-label-md text-[12px] uppercase tracking-wider rounded-sm mb-2 w-max">Újrakárpitozás</span>
+<h3 class="font-headline-md text-headline-md text-on-primary">Luxus Yacht Belső</h3>
+</div>
+</div>
+<!-- Item 4 (Bútor - Placeholder) -->
+<div data-category="furniture" class="gallery-item group relative overflow-hidden rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer">
+<div class="gallery-image w-full overflow-hidden bg-surface-container-highest">
+<img class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" data-alt="A meticulously restored mid-century modern armchair featuring rich, dark walnut wood framing and luxurious mustard yellow bouclé upholstery. Photographed in a bright, minimalist studio setting with soft, natural light highlighting the texture of the fabric and the smooth finish of the wood. The overall aesthetic is clean, professional, and high-end, fitting a corporate modern style with tactile influences." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4-4DDexjEdoHaXi4E1qfFRh9s5FIa1lOqNQP59qXHkRiuGQ384nvLUfdUoL-Ykq_PvkTWGlnn9nVRgrWLg_97j6tNIEZe46BAwWe1ZJ0eBEEpZT0kGeJIvVyhnqzX0C_TuQ7eN0VOecW4BuobKpYnjOYB98FzXWIbd117wCChGYGwd3QV1ltR5ppblZ4WQ9nM2V4YmqhqdU_TzbtBOAt4CP9o3wNqz_Stayw7BXKY9hD-8f21XtcGcLG-UMlIuTSFJ2wKGiplwg"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+<span class="inline-block px-3 py-1 bg-surface-container-low text-on-surface font-label-md text-[12px] uppercase tracking-wider rounded-sm mb-2 w-max">Kárpitozás</span>
+<h3 class="font-headline-md text-headline-md text-on-primary">Mid-Century Fotel</h3>
+</div>
+</div>
+<!-- Item 5 (Különlegesség - Placeholder) -->
+<div data-category="special" class="gallery-item group relative overflow-hidden rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer">
+<div class="gallery-image w-full overflow-hidden bg-surface-container-highest">
+<img class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" data-alt="A close-up shot of a custom acoustic wall panel installation in a high-end recording studio or luxury home cinema. The panels are covered in premium dark grey acoustic fabric with sharp, precise seams and geometric patterns. Soft, dramatic side lighting emphasizes the texture and depth of the installation. The mood is sophisticated, technical, and precise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkfGlcZMUgYP8Ah6ZsLOEL1oAN11vDX3IW4GRoZSw5VTvyW1I_0jh0ztrr5-N-GqH5dCOlEAdP_r1ni4tGGroC_PbRvPHQhgiNN6q8RNvXHayqvg4nfpSSkWaI6gm4VNnNPtfIkwiKlHz2oh6o3yWR-bG1RLw9eqEX6kQfbv7fjL-U_AI1MSsWjv76NVrBF8bpPvG9agFKrAnNvOs1ZQL_QYJlPrHWJgt1FvP3Yt3qgNhjbi-zaMYTrwB_qYoPVvjLMQc0P2W3nA"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+<span class="inline-block px-3 py-1 bg-surface-container-low text-on-surface font-label-md text-[12px] uppercase tracking-wider rounded-sm mb-2 w-max">Egyedi Tervezés</span>
+<h3 class="font-headline-md text-headline-md text-on-primary">Akusztikus Falpanelek</h3>
+</div>
+</div>
+<!-- Item 6 (Bútor - Image 9 placeholder replacement) -->
+<div data-category="furniture" class="gallery-item group relative overflow-hidden rounded-lg border border-outline-variant bg-surface-container-lowest cursor-pointer">
+<div class="gallery-image w-full overflow-hidden">
+<img alt="Vintage leather sofa" class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjwN5E9lkisn3cv59FO68o8S4-d7vb9hzPC4L4FfbidhKB53w4hbhgovoZYUGn4VeWZkDkCq18XrAu_lX8hixxXEEDt7f9E0R8U4LKG1PIVswyGfiaLcpi8O8Il4MCRBiJRlswMTeg21_Zcx2uhxMIDNyAW_Eticvcm07o7Rp0xRBlASWv7yW_he-mi06L8P4rnn79436qVWkGNiBwjo_vUqqqyxw3euHHsWdD0z0gyhlTcID8BmtplQH4eggSLE8j1AUT6NwipQ"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+<span class="inline-block px-3 py-1 bg-surface-container-low text-on-surface font-label-md text-[12px] uppercase tracking-wider rounded-sm mb-2 w-max">Bőrjavítás</span>
+<h3 class="font-headline-md text-headline-md text-on-primary">Chesterfield Kanapé</h3>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Image Lightbox -->
+<div data-lightbox hidden role="dialog" aria-modal="true" aria-labelledby="lightbox-caption" tabindex="-1" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 sm:p-8 focus:outline-none">
+<button type="button" data-lightbox-close aria-label="Nagyított kép bezárása" class="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full bg-transparent text-white transition-opacity hover:opacity-70 focus-visible:opacity-70 focus-visible:outline-none sm:right-8 sm:top-8">
+<span class="material-symbols-outlined" aria-hidden="true">close</span>
+</button>
+<div data-lightbox-content class="relative flex max-h-full w-fit max-w-full flex-col items-center">
+<div class="relative w-fit max-w-full">
+<button type="button" data-lightbox-previous aria-label="Előző kép" class="absolute left-2 top-1/2 z-10 inline-flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-transparent text-white transition-opacity hover:opacity-70 focus-visible:opacity-70 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 sm:-left-12">
+<span class="material-symbols-outlined text-5xl leading-none" aria-hidden="true" style="font-variation-settings: 'FILL' 0, 'wght' 200;">chevron_left</span>
+</button>
+<button type="button" data-lightbox-next aria-label="Következő kép" class="absolute right-2 top-1/2 z-10 inline-flex h-14 w-14 -translate-y-1/2 items-center justify-center rounded-full bg-transparent text-white transition-opacity hover:opacity-70 focus-visible:opacity-70 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 sm:-right-12">
+<span class="material-symbols-outlined text-5xl leading-none" aria-hidden="true" style="font-variation-settings: 'FILL' 0, 'wght' 200;">chevron_right</span>
+</button>
+<img data-lightbox-image class="h-auto w-auto max-h-[74vh] max-w-[calc(100vw-2rem)] rounded-lg object-contain shadow-2xl sm:max-w-[calc(100vw-8rem)]" alt=""/>
+</div>
+<p id="lightbox-caption" data-lightbox-caption aria-live="polite" class="mt-3 text-center font-body-md text-body-md text-white"></p>
+<p data-lightbox-index aria-live="polite" class="mt-1 text-center font-label-md text-xs text-secondary-fixed-dim"></p>
+</div>
+</div>
+<!-- BottomNavBar (Mobile) -->
+<nav class="hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-16 pb-safe px-2 bg-surface border-t border-outline-variant shadow-lg z-50">
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-all p-2 rounded" href="index.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-md text-label-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-all p-2 rounded" href="services.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">build</span>
+<span class="font-label-md text-label-md text-[10px]">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center -mt-6 w-16 h-16 rounded-full bg-primary text-on-primary shadow-lg hover:bg-surface-tint transition-colors shrink-0" href="arajanlat.html">
+<span class="material-symbols-outlined mb-1">description</span>
+<span class="font-label-md text-label-md text-[10px]">Ajánlat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-all p-2 rounded" href="shop.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">storefront</span>
+<span class="font-label-md text-label-md text-[10px]">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold hover:bg-surface-container-low transition-all scale-95 duration-100 p-2 rounded" href="gallery.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">photo_library</span>
+<span class="font-label-md text-label-md text-[10px]">Gallery</span>
+</a>
+</nav>
+<!-- Footer -->
+<footer id="elerhetoseg" class="w-full bg-on-surface px-margin-mobile py-16 pb-24 text-on-primary md:px-margin-desktop md:py-20 md:pb-20">
+<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 md:grid-cols-12 md:gap-8"><div class="md:col-span-5"><a href="index.html" class="inline-block"><img src="images/white_logo.png" alt="Duplaász" class="h-auto w-32"></a><p class="mt-7 max-w-sm font-body-md text-body-md leading-6 text-[#c8c6c5]">Hagyomány és precizitás a kárpitos szakmában. Bármi, amin anyag van, mi megjavítjuk.</p></div><div class="md:col-span-3"><h2 class="font-label-md text-label-md uppercase tracking-[0.2em] text-primary-fixed-dim">Műhely</h2><nav aria-label="Lábléc navigáció" class="mt-5 flex flex-col gap-3"><a class="font-body-md text-body-md text-[#f1f1f1] transition-colors hover:text-primary-fixed-dim" href="index.html">Főoldal</a><a class="font-body-md text-body-md text-[#f1f1f1] transition-colors hover:text-primary-fixed-dim" href="services.html">Szolgáltatások</a><a class="font-body-md text-body-md text-[#f1f1f1] transition-colors hover:text-primary-fixed-dim" href="gallery.html">Galéria</a><a class="font-body-md text-body-md text-[#f1f1f1] transition-colors hover:text-primary-fixed-dim" href="shop.html">Szaküzlet</a></nav></div><div class="md:col-span-4"><h2 class="font-label-md text-label-md uppercase tracking-[0.2em] text-primary-fixed-dim">Elérhetőség</h2><div class="mt-5 flex flex-col gap-4 font-body-md text-body-md leading-6 text-[#f1f1f1]"><a href="shop.html#elerhetoseg" class="flex gap-3 transition-colors hover:text-primary-fixed-dim"><span class="material-symbols-outlined mt-0.5 text-primary-fixed-dim">location_on</span><span>1234 Budapest,<br>Kárpitos utca 42.</span></a><div class="flex gap-3"><span class="material-symbols-outlined mt-0.5 text-primary-fixed-dim">schedule</span><span>H–P: 08:00–17:00<br>Szo: 08:00–12:00</span></div><a href="services.html#ajanlat" class="flex gap-3 transition-colors hover:text-primary-fixed-dim"><span class="material-symbols-outlined text-primary-fixed-dim">description</span><span>Árajánlatkérés</span></a></div></div></div><div class="mx-auto mt-14 flex w-full max-w-7xl flex-col gap-4 border-t border-white/30 pt-7 text-[#c8c6c5] md:flex-row md:items-center md:justify-between"><p class="font-body-md text-sm">© 2026 Duplaász — Kárpitozás és bútorfelújítás</p><p class="font-label-md text-xs uppercase tracking-[0.2em]">Hagyomány &amp; precizitás</p></div>
+</footer>
+<script>
+        const filterButtons = document.querySelectorAll('[data-filter]');
+        const galleryItems = document.querySelectorAll('[data-category]');
+        const galleryGrid = document.querySelector('[data-gallery-grid]');
+        const galleryViewport = document.querySelector('[data-gallery-viewport]');
+        const lightbox = document.querySelector('[data-lightbox]');
+        const lightboxContent = document.querySelector('[data-lightbox-content]');
+        const lightboxImage = document.querySelector('[data-lightbox-image]');
+        const lightboxCaption = document.querySelector('[data-lightbox-caption]');
+        const lightboxIndex = document.querySelector('[data-lightbox-index]');
+        const lightboxClose = document.querySelector('[data-lightbox-close]');
+        const lightboxPrevious = document.querySelector('[data-lightbox-previous]');
+        const lightboxNext = document.querySelector('[data-lightbox-next]');
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        let requestedCategory = 'all';
+        let displayedCategory = 'all';
+        let isFiltering = false;
+        let lastFocusedGalleryItem = null;
+        let activeGalleryItem = null;
+        let lightboxAnimations = [];
+        let lightboxTransition = 0;
+        let lightboxClosing = false;
+
+        const requestedFilter = new URLSearchParams(window.location.search).get('filter');
+        const availableFilters = new Set(Array.from(filterButtons, (button) => button.dataset.filter));
+        if (availableFilters.has(requestedFilter)) {
+            requestedCategory = requestedFilter;
+            displayedCategory = requestedFilter;
+            galleryItems.forEach((item) => {
+                item.hidden = requestedCategory !== 'all' && item.dataset.category !== requestedCategory;
+            });
+            filterButtons.forEach((button) => {
+                const isActive = button.dataset.filter === requestedCategory;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-pressed', String(isActive));
+            });
+        }
+
+        function animateLightbox(open) {
+            const transition = ++lightboxTransition;
+            lightboxAnimations.forEach((animation) => animation.cancel());
+
+            const options = {
+                duration: reducedMotion.matches ? 0 : 100,
+                easing: 'ease-in-out',
+                fill: 'forwards'
+            };
+            lightboxAnimations = [
+                lightbox.animate(
+                    [{ opacity: open ? 0 : 1 }, { opacity: open ? 1 : 0 }],
+                    options
+                ),
+                lightboxContent.animate(
+                    [
+                        { opacity: open ? 0 : 1, transform: `scale(${open ? 0.96 : 1})` },
+                        { opacity: open ? 1 : 0, transform: `scale(${open ? 1 : 0.96})` }
+                    ],
+                    options
+                )
+            ];
+
+            Promise.allSettled(lightboxAnimations.map((animation) => animation.finished)).then(() => {
+                if (transition !== lightboxTransition) return;
+
+                lightboxAnimations.forEach((animation) => animation.cancel());
+                lightboxAnimations = [];
+                if (!open) {
+                    lightbox.hidden = true;
+                    lightboxImage.removeAttribute('src');
+                    document.body.classList.remove('lightbox-open');
+                    lastFocusedGalleryItem?.focus();
+                }
+            });
+        }
+
+        function closeLightbox() {
+            if (lightbox.hidden || lightboxClosing) return;
+
+            lightboxClosing = true;
+            animateLightbox(false);
+        }
+
+        function getVisibleGalleryItems() {
+            return Array.from(galleryItems).filter((item) => !item.hidden);
+        }
+
+        function showLightboxItem(item) {
+            const image = item.querySelector('img');
+            if (!image?.src) return;
+            const title = item.querySelector('h3')?.textContent.trim() || image.alt;
+
+            activeGalleryItem = item;
+            lightboxImage.src = image.src;
+            lightboxImage.alt = image.alt || title;
+            lightboxCaption.textContent = title;
+
+            const visibleItems = getVisibleGalleryItems();
+            const hasMultipleImages = visibleItems.length > 1;
+            const currentIndex = visibleItems.indexOf(item) + 1;
+            lightboxPrevious.disabled = !hasMultipleImages;
+            lightboxNext.disabled = !hasMultipleImages;
+            lightboxIndex.textContent = `${String(currentIndex).padStart(2, '0')} / ${String(visibleItems.length).padStart(2, '0')}`;
+        }
+
+        function openLightbox(item) {
+            lastFocusedGalleryItem = item;
+            showLightboxItem(item);
+            lightbox.hidden = false;
+            lightboxClosing = false;
+            document.body.classList.add('lightbox-open');
+            lightbox.focus({ preventScroll: true });
+            animateLightbox(true);
+        }
+
+        function moveLightbox(direction) {
+            const visibleItems = getVisibleGalleryItems();
+            if (visibleItems.length < 2) return;
+
+            const currentIndex = Math.max(0, visibleItems.indexOf(activeGalleryItem));
+            const nextIndex = (currentIndex + direction + visibleItems.length) % visibleItems.length;
+            showLightboxItem(visibleItems[nextIndex]);
+        }
+
+        galleryItems.forEach((item) => {
+            const image = item.querySelector('img');
+            const title = item.querySelector('h3')?.textContent.trim() || image?.alt || 'Kép';
+
+            item.tabIndex = 0;
+            item.setAttribute('role', 'button');
+            item.setAttribute('aria-label', `Kép megnyitása: ${title}`);
+            item.addEventListener('click', () => openLightbox(item));
+            item.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    openLightbox(item);
+                }
+            });
+        });
+
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrevious.addEventListener('click', () => moveLightbox(-1));
+        lightboxNext.addEventListener('click', () => moveLightbox(1));
+        lightbox.addEventListener('click', (event) => {
+            if (!event.target.closest('[data-lightbox-content]')) closeLightbox();
+        });
+        document.addEventListener('keydown', (event) => {
+            if (lightbox.hidden) return;
+            if (event.key === 'Escape') closeLightbox();
+            if (event.key === 'ArrowLeft') {
+                event.preventDefault();
+                moveLightbox(-1);
+            }
+            if (event.key === 'ArrowRight') {
+                event.preventDefault();
+                moveLightbox(1);
+            }
+        });
+
+        async function updateGallery() {
+            isFiltering = true;
+
+            // Keep the latest click, even when a previous transition is still running.
+            while (displayedCategory !== requestedCategory) {
+                const fadeOut = galleryGrid.animate(
+                    [{ opacity: 1 }, { opacity: 0 }],
+                    { duration: reducedMotion.matches ? 0 : 100, fill: 'forwards' }
+                );
+                await fadeOut.finished;
+
+                const startHeight = galleryViewport.getBoundingClientRect().height;
+                displayedCategory = requestedCategory;
+                galleryItems.forEach((item) => {
+                    item.hidden = displayedCategory !== 'all' && item.dataset.category !== displayedCategory;
+                });
+
+                // Measure the natural grid, independently of its animated outer container.
+                const endHeight = galleryGrid.getBoundingClientRect().height;
+                const heightAnimation = galleryViewport.animate(
+                    [{ height: `${startHeight}px` }, { height: `${endHeight}px` }],
+                    { duration: reducedMotion.matches ? 0 : 320, easing: 'ease-in-out' }
+                );
+                const fadeIn = galleryGrid.animate(
+                    [{ opacity: 0 }, { opacity: 1 }],
+                    { duration: reducedMotion.matches ? 0 : 220, easing: 'ease-out' }
+                );
+                fadeOut.cancel();
+                await Promise.all([heightAnimation.finished, fadeIn.finished]);
+                // No fixed height remains: the container returns to its natural size.
+            }
+
+            isFiltering = false;
+        }
+
+        function finishGalleryAnimations() {
+            [galleryGrid, galleryViewport].forEach((element) => {
+                element.getAnimations().forEach((animation) => animation.finish());
+            });
+        }
+
+        window.addEventListener('resize', finishGalleryAnimations);
+        reducedMotion.addEventListener('change', finishGalleryAnimations);
+
+        filterButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                requestedCategory = button.dataset.filter;
+                filterButtons.forEach((filterButton) => {
+                    const isActive = filterButton === button;
+                    filterButton.classList.toggle('active', isActive);
+                    filterButton.setAttribute('aria-pressed', String(isActive));
+                });
+
+                if (!isFiltering) updateGallery();
+            });
+        });
+    </script>
+<script src="mobile-menu.js"></script>
+</body></html>

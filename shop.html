@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html lang="hu"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Szaküzlet - DuplaÁsz Kárpitos</title>
+<link rel="stylesheet" href="./css/output.css">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;700;800&amp;family=Work+Sans:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config" type="text/plain">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed-dim": "#c4c6cc",
+                      "on-tertiary-fixed-variant": "#44474b",
+                      "surface-container-low": "#f3f3f3",
+                      "secondary-container": "#e2dfde",
+                      "secondary-fixed-dim": "#c8c6c5",
+                      "surface-bright": "#f9f9f9",
+                      "error-container": "#ffdad6",
+                      "surface-container-highest": "#e2e2e2",
+                      "inverse-on-surface": "#f1f1f1",
+                      "surface-container-lowest": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-primary": "#ffffff",
+                      "background": "#f9f9f9",
+                      "on-surface-variant": "#5e3f3b",
+                      "on-surface": "#1a1c1c",
+                      "surface-container-high": "#e8e8e8",
+                      "primary-fixed-dim": "#ffb4aa",
+                      "secondary": "#5f5e5e",
+                      "outline-variant": "#e9bcb6",
+                      "on-error": "#ffffff",
+                      "tertiary-container": "#6e7176",
+                      "surface-variant": "#e2e2e2",
+                      "tertiary-fixed": "#e0e2e8",
+                      "primary-fixed": "#ffdad5",
+                      "on-primary-fixed-variant": "#930007",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed-variant": "#474746",
+                      "secondary-fixed": "#e5e2e1",
+                      "on-tertiary-fixed": "#181c20",
+                      "primary": "#b5000b",
+                      "on-primary-container": "#fff5f3",
+                      "surface-tint": "#c0000c",
+                      "on-error-container": "#93000a",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#f4f6fc",
+                      "inverse-surface": "#2f3131",
+                      "on-background": "#1a1c1c",
+                      "on-secondary-container": "#636262",
+                      "tertiary": "#55595d",
+                      "on-primary-fixed": "#410001",
+                      "inverse-primary": "#ffb4aa",
+                      "outline": "#936e69",
+                      "surface-container": "#eeeeee",
+                      "primary-container": "#e30613",
+                      "surface": "#f9f9f9",
+                      "surface-dim": "#dadada",
+                      "on-secondary-fixed": "#1c1b1b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "margin-desktop": "64px",
+                      "section-gap": "80px",
+                      "base": "8px",
+                      "gutter": "24px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "label-md": [
+                              "Work Sans"
+                      ],
+                      "headline-md": [
+                              "Chivo"
+                      ],
+                      "headline-lg": [
+                              "Chivo"
+                      ],
+                      "headline-lg-mobile": [
+                              "Chivo"
+                      ],
+                      "body-lg": [
+                              "Work Sans"
+                      ],
+                      "display-lg": [
+                              "Chivo"
+                      ],
+                      "body-md": [
+                              "Work Sans"
+                      ]
+              },
+              "fontSize": {
+                      "label-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "20px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "36px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface-bright text-on-background font-body-md antialiased min-h-screen pb-16 md:pb-0">
+<!-- TopAppBar (Mobile) -->
+<header class="fixed top-0 w-full z-50 border-b border-outline-variant bg-surface/95 backdrop-blur-sm flex justify-between items-center px-margin-mobile h-16 lg:hidden">
+<button aria-label="Menü" aria-expanded="false" aria-controls="mobile-menu" data-mobile-menu-toggle class="text-on-surface-variant hover:text-primary-container transition-colors opacity-80 material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</button>
+<span class="font-headline-md text-headline-md-mobile font-bold tracking-tight text-primary"><a href="index.html"><img class="w-2/3" src="images/header_logo.png" alt="Duplaász"></a></span>
+<a class="text-on-surface-variant hover:text-primary-container transition-colors material-symbols-outlined inline-flex" href="#elerhetoseg" style="font-variation-settings: 'FILL' 0;">location_on</a>
+</header>
+<div data-mobile-menu-backdrop class="fixed inset-0 z-[60] bg-black/45 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"></div>
+<aside id="mobile-menu" data-mobile-menu aria-label="Mobil navigáció" aria-hidden="true" class="fixed inset-y-0 left-0 z-[70] flex w-[min(86vw,360px)] -translate-x-full flex-col bg-surface p-5 shadow-xl transition-transform duration-300 lg:hidden">
+<div class="flex items-center justify-between border-b border-outline-variant pb-4 text-primary font-headline-md text-headline-md font-bold"><span><img src="images/header_logo.png" class="w-2/3" alt="Duplaász"></span><button type="button" aria-label="Menü bezárása" data-mobile-menu-close class="text-3xl leading-none text-on-surface">&times;</button></div><nav aria-label="Fő navigáció" class="flex flex-col gap-1 pt-4"><a href="index.html" class="flex items-center gap-4 rounded px-3 py-3 text-on-surface font-normal hover:bg-surface-container-low hover:text-primary"><span class="material-symbols-outlined">home</span>Főoldal</a><a href="services.html" class="flex items-center gap-4 rounded px-3 py-3 text-on-surface font-normal hover:bg-surface-container-low hover:text-primary"><span class="material-symbols-outlined">build</span>Szolgáltatások</a><a href="shop.html" class="flex items-center gap-4 rounded px-3 py-3 text-primary font-normal"><span class="material-symbols-outlined">storefront</span>Bolt</a><a href="gallery.html" class="flex items-center gap-4 rounded px-3 py-3 text-on-surface font-normal hover:bg-surface-container-low hover:text-primary"><span class="material-symbols-outlined">photo_library</span>Galéria</a><a href="shop.html#elerhetoseg" class="flex items-center gap-4 rounded px-3 py-3 text-on-surface font-normal hover:bg-surface-container-low hover:text-primary"><span class="material-symbols-outlined">location_on</span>Elérhetőség</a></nav><div class="mt-auto border-t border-outline-variant pt-6"><a href="services.html#ajanlat" class="flex items-center justify-center gap-2 rounded bg-primary px-6 py-3 font-label-md text-label-md uppercase tracking-wider text-on-primary hover:bg-surface-tint"><span class="material-symbols-outlined">description</span>Árajánlatkérés</a></div></aside>
+<!-- Top Navigation (Desktop) -->
+<nav class="hidden lg:flex justify-between items-center px-margin-desktop h-24 border-b border-outline-variant bg-surface/95 backdrop-blur-sm sticky top-0 z-50">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary"><a href="index.html"><img class="w-3/4" src="images/header_logo.png" alt="Duplaász"></a></span>
+<div class="flex gap-gutter">
+<a class="font-label-md text-label-md text-on-surface font-normal hover:text-primary-container transition-colors" href="index.html">Főoldal</a>
+<a class="font-label-md text-label-md text-on-surface font-normal hover:text-primary-container transition-colors" href="services.html">Szolgáltatások</a>
+<a class="font-label-md text-label-md text-primary font-normal hover:text-primary-container transition-colors border-b-2 border-primary" href="shop.html">Bolt</a>
+<a class="font-label-md text-label-md text-on-surface font-normal hover:text-primary-container transition-colors" href="gallery.html">Galéria</a>
+</div>
+<div class="ml-8 flex shrink-0 items-center gap-4">
+<a class="text-primary hover:text-primary-container transition-colors material-symbols-outlined inline-flex" href="#elerhetoseg" style="font-variation-settings: 'FILL' 0;">location_on</a>
+<a class="inline-flex whitespace-nowrap bg-primary px-6 py-3 text-on-primary rounded font-label-md text-label-md uppercase tracking-wider hover:bg-surface-tint transition-colors" href="services.html#ajanlat">Kérjen Ajánlatot</a>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-gutter">
+<div class="w-full md:w-1/2 flex flex-col gap-6">
+<div class="bg-surface-container-low text-primary font-label-md text-label-md px-4 py-2 rounded-full inline-flex items-center gap-2 w-max border border-outline-variant">
+<span class="material-symbols-outlined text-[18px]">storefront</span>
+                    DuplaÁsz Kárpitos Szaküzlet
+                </div>
+<h1 class="font-display-lg text-display-lg text-on-surface">Mindent a kárpitozáshoz, egy helyen.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                    Fedezze fel széles választékunkat. Nem webshop, jöjjön el hozzánk, és tapintsa meg a minőséget személyesen! Szakértő eladóink várják.
+                </p>
+<div class="flex gap-4 pt-4">
+<a class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-DEFAULT hover:bg-primary-container transition-colors inline-flex items-center gap-2 shadow-sm" href="#elerhetoseg">
+<span class="material-symbols-outlined">map</span>
+                        Üzletünk címe
+                    </a>
+</div>
+</div>
+<div class="w-full md:w-1/2 h-64 md:h-[400px] bg-surface-container-high rounded-xl overflow-hidden relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A bright, modern interior view of a premium upholstery retail shop. Rolls of high-quality leather and colorful textiles are elegantly displayed on wooden shelves. The lighting is soft and inviting, highlighting the textures of the materials. A clean, professional aesthetic with an organized layout." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCqrT70c4QbMMrIDeDy1rsBKbiKJhuTv3vhPFKKeaQMbCROOjmlpubQJby5G7kG7khEHd21Bxg28SjJIjIVqMURldfULuO92dccH6DMFOYQ8724LovfkRfvcyzsntjqSfFmgeOvTeLz925HCPtGSBJo3WyCHsdW0pX4ySHz7a489lSBfhoPg5La6mRvPusMl-PSgpVLfgGWoKGIrVZEINRCBg471sL3H2F-5LGK3VRQ6W-fIeX0Q7B_MOCnyzFMsVuOqy7jwfzrHQ')"></div>
+</div>
+</div>
+</section>
+<!-- Categories Bento Grid -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap bg-surface-bright">
+<div class="max-w-7xl mx-auto w-full">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-12 text-center">Kiemelt Kínálatunk</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Category 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300">
+<div class="h-48 bg-surface-container relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A close-up of various foam sheets in different densities and colors neatly stacked. The lighting emphasizes the porous texture of the foam, suitable for upholstery, car seats, and furniture padding. Professional, clean workshop setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGv00EiWTntZm7_20H4_8ht0YPxX0y5PxRmBynlQ-bPtkwklZ_JOSW4FNwpN1xHD7D-321ZWqTjVvpU6GZqWlXfJMVo0VdLyBT-_Ag2wOpQjSmaSWX7_akgQYaqVjdDODX8Oq08tox3cBeMq9AHDmuJA6UR1F_hjTqYpvHiCbdQokwjfInSsDTFrjbfQHrl4P-IOo9ahJusNINSUAQJl_gM1YtTNAFqbSI46fqA9GJGJHXb4BnOZiFdLt6BHGHJbDXa88wu91RnA"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Habszivacsok</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Autó, motor és bútoripari szivacsok széles választékban, különböző sűrűségben és méretben.</p>
+</div>
+</div>
+<!-- Category 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300">
+<div class="h-48 bg-surface-container relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHxih3I39SErK5qd2aygHPCxMT-fzRpuUK9vianKj3E-ZVcJ2KLIqxDPAtIQDYD9PBCNN9Q86AbBTgE2uj5R2UUi963Ig0hwVKZC0P4wHkoMDrMpNYZlbB7RpfHUMCYvAPRJiqTvs4_FgA3V4w6oda02zFJlGHFL-hlu97pu1F1WuzKrwKOPZQIAcwRDasJOW3485sEwI5HPMOpF9rzl4iGe3N8CX5LOhx8aBOZ7lvTs3dJSkRybkDMA3otzd5Uw2GYaq0nm4mKA"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Bőrök és Textilek</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Prémium minőségű valódi bőrök, műbőrök és változatos kárpitanyagok végtelen színkombinációban.</p>
+</div>
+</div>
+<!-- Category 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden flex flex-col group hover:shadow-lg transition-shadow duration-300">
+<div class="h-48 bg-surface-container relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHwaDmtp8HJIOl3ZAzvLRHXf4PlLdkj1qdJtlr3ExX5XiacsXldEYWqRZ-wrrdivM09xmZD9ShA4VlCu0vq6WkjUZ9dqqjmyntFFPD4Rh_TaYCLwhMyAi6VZk969LFMoD4vMFiDJJFAppGvPNPCE_-AuR_wu4wMd84ruczuNtU4cjlqyc--yitEAs_EOkMuMfUrT1NM0wEur4ETxWgWE748nSOSV2LeoAnbVAG4cw0UNaULw0rwDp0AhwvQvsQeErbswSS661OUQ"/>
+</div>
+<div class="p-6 flex flex-col flex-grow">
+<h3 class="font-headline-md text-headline-md text-primary mb-2">Kellékek és Szerszámok</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Profi kárpitos szerszámok, tűk, cérnák, díszszegek és minden egyéb aprócikk, ami a munkához kell.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Inventory List -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap bg-surface-container-low">
+<div class="max-w-7xl mx-auto w-full">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-8">Mindent megtalál nálunk</h2>
+<div id="termekkategoriak" class="overflow-hidden rounded-xl border border-outline-variant bg-surface-container-lowest shadow-sm">
+<details class="group border-b border-outline-variant last:border-b-0">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-surface-container-low focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-[-2px]">
+<span class="font-label-md text-label-md text-on-surface">Szivacsok</span>
+<span aria-hidden="true" class="material-symbols-outlined text-secondary transition-transform duration-200 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-5 py-5 sm:px-6 sm:py-6">
+<p class="font-body-md text-sm leading-5 text-on-surface-variant">Üzletünkben azonnal elérhető habszivacsok különböző sűrűségekben, tömbökben és egyedi méretre vágva is kaphatók.</p>
+<div class="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2">
+<article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Standard habszivacs táblák</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">T25, T30, T35 keménységben (1–10 cm vastagságban)</p></article>
+<article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Autó- és motorülésszivacsok</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Nagy sűrűségű, formatartó, préselt habok</p></article>
+<article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Memóriahab és hideghab rétegek</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Prémium komfortérzet bútorokhoz és matracokhoz</p></article>
+<article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Méretre vágott ülő- és háttámlák</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Helyszíni méretre vágás, milliméteres pontossággal</p></article>
+<article class="border border-outline-variant bg-surface-container-low px-4 py-3 sm:col-span-2"><h3 class="font-label-md text-sm font-bold text-on-surface">Daráltszivacs és párnatöltő pehely</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Párnák, puffok és fejtámlák professzionális töméséhez</p></article>
+</div>
+</div>
+</details>
+<details class="group border-b border-outline-variant last:border-b-0">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-surface-container-low focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-[-2px]"><span class="font-label-md text-label-md text-on-surface">Kárpitok és textilek</span><span aria-hidden="true" class="material-symbols-outlined text-secondary transition-transform duration-200 group-open:rotate-180">expand_more</span></summary>
+<div class="px-5 py-5 sm:px-6 sm:py-6"><p class="font-body-md text-sm leading-5 text-on-surface-variant">Tartós, dekoratív és jól tisztítható anyagok otthoni, közületi és járműkárpitozáshoz.</p><div class="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2"><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Bútorszövetek</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Klasszikus és modern minták, többféle kopásállósággal</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Bársony és plüss</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Puha tapintású, elegáns felületek bútorokhoz</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Vászon és zsákvászon</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Természetes hatású, strapabíró textíliák</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Kültéri kárpitanyagok</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">UV- és időjárásálló anyagok teraszra, hajóra</p></article></div></div>
+</details>
+<details class="group border-b border-outline-variant last:border-b-0">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-surface-container-low focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-[-2px]"><span class="font-label-md text-label-md text-on-surface">Valódi és műbőrök</span><span aria-hidden="true" class="material-symbols-outlined text-secondary transition-transform duration-200 group-open:rotate-180">expand_more</span></summary>
+<div class="px-5 py-5 sm:px-6 sm:py-6"><p class="font-body-md text-sm leading-5 text-on-surface-variant">Sokféle színben és felületkiképzéssel kínálunk bőr- és műbőranyagokat.</p><div class="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2"><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Bútormarhabőr</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Természetes, időtálló felület klasszikus bútorokhoz</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Autókárpitbőr</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Kopásálló és könnyen tisztítható prémium anyag</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Műbőr és vinyl</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Praktikus, nagy választékban elérhető burkolatok</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Velúrhatású műbőr</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Puha, elegáns megjelenésű alternatívák</p></article></div></div>
+</details>
+<details class="group border-b border-outline-variant last:border-b-0">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-surface-container-low focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-[-2px]"><span class="font-label-md text-label-md text-on-surface">Szegecsek, díszszegek és fogantyúk</span><span aria-hidden="true" class="material-symbols-outlined text-secondary transition-transform duration-200 group-open:rotate-180">expand_more</span></summary>
+<div class="px-5 py-5 sm:px-6 sm:py-6"><p class="font-body-md text-sm leading-5 text-on-surface-variant">Apró részletek, amelyek karaktert és igényes befejezést adnak a bútoroknak.</p><div class="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2"><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Antikolt díszszegek</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Bronz, réz és patinás kivitelben</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Króm és fekete szegecsek</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Modern bútorokhoz illő, letisztult választék</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Bútorgombok</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Kerek, négyszögletes és egyedi kialakítások</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Fogantyúk és veretek</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Felújításhoz és új bútorok befejezéséhez</p></article></div></div>
+</details>
+<details class="group border-b border-outline-variant last:border-b-0">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-surface-container-low focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-[-2px]"><span class="font-label-md text-label-md text-on-surface">Speciális kárpitos szerszámok</span><span aria-hidden="true" class="material-symbols-outlined text-secondary transition-transform duration-200 group-open:rotate-180">expand_more</span></summary>
+<div class="px-5 py-5 sm:px-6 sm:py-6"><p class="font-body-md text-sm leading-5 text-on-surface-variant">Megbízható kéziszerszámok és gépek a pontos, professzionális munkához.</p><div class="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2"><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Kárpitos tűzőgépek</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Kézi és pneumatikus kivitelben</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Hevederfeszítők</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Pontos és egyenletes hevederezéshez</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Kapocskiszedők</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Gyors, biztonságos bontás a váz sérülése nélkül</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Ragasztópisztolyok</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Precíz adagolás kárpitos ragasztókhoz</p></article></div></div>
+</details>
+<details class="group last:border-b-0">
+<summary class="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-4 transition-colors hover:bg-surface-container-low focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-[-2px]"><span class="font-label-md text-label-md text-on-surface">Erős cérnák, tűk és szíjak</span><span aria-hidden="true" class="material-symbols-outlined text-secondary transition-transform duration-200 group-open:rotate-180">expand_more</span></summary>
+<div class="px-5 py-5 sm:px-6 sm:py-6"><p class="font-body-md text-sm leading-5 text-on-surface-variant">Minden, ami a stabil varráshoz, rögzítéshez és tartós szerkezethez szükséges.</p><div class="mt-4 grid grid-cols-1 gap-2 sm:grid-cols-2"><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Erősített kárpitos cérnák</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Sokféle színben, gépi és kézi varráshoz</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Ívelt és egyenes tűk</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Különböző vastagságban és hosszúságban</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Gumipántok</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Rugalmas ülőfelületek kialakításához</p></article><article class="border border-outline-variant bg-surface-container-low px-4 py-3"><h3 class="font-label-md text-sm font-bold text-on-surface">Juta- és hevederszíjak</h3><p class="mt-1 text-sm leading-5 text-on-surface-variant">Hagyományos és modern szerkezetekhez</p></article></div></div>
+</details>
+</div>
+</div>
+</section>
+<!-- Why Buy Here -->
+<section class="px-margin-mobile md:px-margin-desktop py-section-gap bg-surface-bright text-center flex flex-col items-center">
+<h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-12">Miért érdemes betérni hozzánk?</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl w-full">
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-3xl">handshake</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Szakértői Tanácsadás</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Több évtizedes tapasztalattal segítünk a megfelelő anyagok és eszközök kiválasztásában.</p>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-3xl">inventory_2</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Hatalmas Választék</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Polcainkon minden megtalálható, ami egy kisebb javításhoz vagy teljes restauráláshoz szükséges.</p>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-3xl">touch_app</span>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface">Fizikai Kontaktus</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">A textilek és bőrök igazi minősége tapintás útján dől el. Lássa a valós színeket, érezze a textúrát!</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-on-surface px-margin-mobile py-16 pb-24 text-on-primary md:px-margin-desktop md:py-20 md:pb-20" id="elerhetoseg">
+<div class="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 md:grid-cols-12 md:gap-8"><div class="md:col-span-5"><a href="index.html" class="inline-block"><img src="images/white_logo.png" alt="Duplaász" class="h-auto w-32"></a><p class="mt-7 max-w-sm font-body-md text-body-md leading-6 text-[#c8c6c5]">Hagyomány és precizitás a kárpitos szakmában. Bármi, amin anyag van, mi megjavítjuk.</p></div><div class="md:col-span-3"><h2 class="font-label-md text-label-md uppercase tracking-[0.2em] text-primary-fixed-dim">Műhely</h2><nav aria-label="Lábléc navigáció" class="mt-5 flex flex-col gap-3"><a class="font-body-md text-body-md text-[#f1f1f1] transition-colors hover:text-primary-fixed-dim" href="index.html">Főoldal</a><a class="font-body-md text-body-md text-[#f1f1f1] transition-colors hover:text-primary-fixed-dim" href="services.html">Szolgáltatások</a><a class="font-body-md text-body-md text-[#f1f1f1] transition-colors hover:text-primary-fixed-dim" href="gallery.html">Galéria</a><a class="font-body-md text-body-md text-[#f1f1f1] transition-colors hover:text-primary-fixed-dim" href="shop.html">Szaküzlet</a></nav></div><div class="md:col-span-4"><h2 class="font-label-md text-label-md uppercase tracking-[0.2em] text-primary-fixed-dim">Elérhetőség</h2><div class="mt-5 flex flex-col gap-4 font-body-md text-body-md leading-6 text-[#f1f1f1]"><a href="#elerhetoseg" class="flex gap-3 transition-colors hover:text-primary-fixed-dim"><span class="material-symbols-outlined mt-0.5 text-primary-fixed-dim">location_on</span><span>1234 Budapest,<br>Kárpitos utca 42.</span></a><div class="flex gap-3"><span class="material-symbols-outlined mt-0.5 text-primary-fixed-dim">schedule</span><span>H–P: 08:00–17:00<br>Szo: 08:00–12:00</span></div><a href="services.html#ajanlat" class="flex gap-3 transition-colors hover:text-primary-fixed-dim"><span class="material-symbols-outlined text-primary-fixed-dim">description</span><span>Árajánlatkérés</span></a></div></div></div><div class="mx-auto mt-14 flex w-full max-w-7xl flex-col gap-4 border-t border-white/30 pt-7 text-[#c8c6c5] md:flex-row md:items-center md:justify-between"><p class="font-body-md text-sm">© 2026 Duplaász — Kárpitozás és bútorfelújítás</p><p class="font-label-md text-xs uppercase tracking-[0.2em]">Hagyomány &amp; precizitás</p></div>
+</footer>
+<!-- BottomNavBar Mobile -->
+<nav class="hidden fixed bottom-0 left-0 w-full flex justify-around items-center h-16 pb-safe px-2 bg-surface border-t border-outline-variant shadow-lg z-50">
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-all p-2 rounded" href="index.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">home</span>
+<span class="font-label-md text-label-md text-[10px]">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-all p-2 rounded" href="services.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">build</span>
+<span class="font-label-md text-label-md text-[10px]">Services</span>
+</a>
+<a class="flex flex-col items-center justify-center -mt-6 w-16 h-16 rounded-full bg-primary text-on-primary shadow-lg hover:bg-surface-tint transition-colors shrink-0" href="arajanlat.html">
+<span class="material-symbols-outlined mb-1">description</span>
+<span class="font-label-md text-label-md text-[10px]">Ajánlat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary font-bold hover:bg-surface-container-low transition-all scale-95 duration-100 p-2 rounded" href="shop.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">storefront</span>
+<span class="font-label-md text-label-md text-[10px]">Shop</span>
+</a>
+<a class="flex flex-col items-center justify-center text-secondary hover:bg-surface-container-low transition-all p-2 rounded" href="gallery.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">photo_library</span>
+<span class="font-label-md text-label-md text-[10px]">Gallery</span>
+</a>
+</nav>
+<script>
+(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const animationOptions = {
+        duration: 240,
+        easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+        fill: 'forwards'
+    };
+
+    document.querySelectorAll('#termekkategoriak > details').forEach((category) => {
+        const summary = category.querySelector(':scope > summary');
+        const content = category.querySelector(':scope > div');
+        let animation;
+        let animationFrame;
+        let isClosing = false;
+
+        if (!summary || !content) return;
+
+        const syncActiveState = () => {
+            summary.classList.toggle('bg-surface-container-low', category.open);
+        };
+
+        const finishAnimation = (open) => {
+            const completedAnimation = animation;
+            category.open = open;
+            category.style.height = '';
+            category.style.overflow = '';
+            if (completedAnimation) completedAnimation.cancel();
+            animation = undefined;
+            animationFrame = undefined;
+            isClosing = false;
+            syncActiveState();
+        };
+
+        const stopCurrentAnimation = () => {
+            if (animationFrame) cancelAnimationFrame(animationFrame);
+            if (animation) animation.cancel();
+        };
+
+        const closeCategory = () => {
+            const startHeight = category.offsetHeight;
+            const endHeight = summary.offsetHeight;
+            stopCurrentAnimation();
+            isClosing = true;
+            category.style.height = `${startHeight}px`;
+            category.style.overflow = 'hidden';
+
+            animation = category.animate(
+                { height: [`${startHeight}px`, `${endHeight}px`] },
+                animationOptions
+            );
+            animation.onfinish = () => finishAnimation(false);
+        };
+
+        const openCategory = () => {
+            const startHeight = category.offsetHeight;
+            stopCurrentAnimation();
+            isClosing = false;
+            category.style.height = `${startHeight}px`;
+            category.style.overflow = 'hidden';
+            category.open = true;
+            syncActiveState();
+
+            animationFrame = requestAnimationFrame(() => {
+                const endHeight = summary.offsetHeight + content.offsetHeight;
+                animation = category.animate(
+                    { height: [`${startHeight}px`, `${endHeight}px`] },
+                    animationOptions
+                );
+                animation.onfinish = () => finishAnimation(true);
+            });
+        };
+
+        syncActiveState();
+        category.addEventListener('toggle', syncActiveState);
+        summary.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            if (reducedMotion.matches) {
+                stopCurrentAnimation();
+                category.style.height = '';
+                category.style.overflow = '';
+                isClosing = false;
+                category.open = !category.open;
+                syncActiveState();
+                return;
+            }
+
+            if (category.open && !isClosing) closeCategory();
+            else openCategory();
+        });
+    });
+})();
+</script>
+<script src="mobile-menu.js"></script>
+</body></html>
