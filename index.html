@@ -316,11 +316,20 @@
         }
 
         @media (max-width: 1023px) {
-            .home-nav,
+            .home-nav {
+                background-color: rgb(255 255 255 / 0.82);
+                border-bottom-color: transparent;
+                box-shadow: none;
+                -webkit-backdrop-filter: blur(10px);
+                backdrop-filter: blur(10px);
+            }
+
             .home-nav.is-on-content {
                 background-color: var(--color-surface-container-lowest);
                 border-bottom-color: transparent;
                 box-shadow: none;
+                -webkit-backdrop-filter: none;
+                backdrop-filter: none;
             }
 
             .home-nav [data-nav-link],
