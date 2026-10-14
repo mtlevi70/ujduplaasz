@@ -241,6 +241,52 @@
             background-color: #dc2626;
         }
 
+        @media (max-width: 767px) {
+            .store-offerings {
+                background-color: var(--color-on-surface);
+                border: 1px solid var(--color-outline-variant);
+                border-radius: 0.5rem;
+                box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+                overflow: hidden;
+                position: relative;
+            }
+
+            .store-offerings-background {
+                inset: 0;
+                position: absolute;
+            }
+
+            .store-offerings-background img {
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+            }
+
+            .store-offerings-background::after {
+                background-color: rgb(26 28 28 / 0.35);
+                content: '';
+                inset: 0;
+                position: absolute;
+            }
+
+            .store-offerings-list {
+                padding: 1rem;
+                position: relative;
+                z-index: 1;
+            }
+
+            .store-offering {
+                backdrop-filter: blur(4px);
+                background-color: rgb(249 249 249 / 0.86);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .store-offerings-background {
+                display: none;
+            }
+        }
+
         .home-nav [data-nav-logo="solid"] {
             display: none;
         }
@@ -555,35 +601,41 @@
                         Minden, amire egy szakembernek vagy egy lelkes amatőrnek szüksége lehet. Válogatott, minőségi
                         alapanyagok közvetlenül a polcról.
                     </p>
-                    <ul class="space-y-4">
+                    <div class="store-offerings">
+                        <div class="store-offerings-background" aria-hidden="true">
+                            <img alt=""
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHxih3I39SErK5qd2aygHPCxMT-fzRpuUK9vianKj3E-ZVcJ2KLIqxDPAtIQDYD9PBCNN9Q86AbBTgE2uj5R2UUi963Ig0hwVKZC0P4wHkoMDrMpNYZlbB7RpfHUMCYvAPRJiqTvs4_FgA3V4w6oda02zFJlGHFL-hlu97pu1F1WuzKrwKOPZQIAcwRDasJOW3485sEwI5HPMOpF9rzl4iGe3N8CX5LOhx8aBOZ7lvTs3dJSkRybkDMA3otzd5Uw2GYaq0nm4mKA" />
+                        </div>
+                        <ul class="store-offerings-list space-y-4">
                         <li
-                            class="flex items-center gap-4 bg-surface-bright p-4 rounded-lg border border-outline-variant">
+                            class="store-offering flex items-center gap-4 bg-surface-bright p-4 rounded-lg border border-outline-variant">
                             <span
                                 class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">layers</span>
                             <span class="font-label-md text-label-md text-on-surface">Szivacsok (különböző
                                 sűrűségben)</span>
                         </li>
                         <li
-                            class="flex items-center gap-4 bg-surface-bright p-4 rounded-lg border border-outline-variant">
+                            class="store-offering flex items-center gap-4 bg-surface-bright p-4 rounded-lg border border-outline-variant">
                             <span
                                 class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">texture</span>
                             <span class="font-label-md text-label-md text-on-surface">Valódi bőrök és műbőrök</span>
                         </li>
                         <li
-                            class="flex items-center gap-4 bg-surface-bright p-4 rounded-lg border border-outline-variant">
+                            class="store-offering flex items-center gap-4 bg-surface-bright p-4 rounded-lg border border-outline-variant">
                             <span
                                 class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">styler</span>
                             <span class="font-label-md text-label-md text-on-surface">Prémium textilek és
                                 szövetek</span>
                         </li>
                         <li
-                            class="flex items-center gap-4 bg-surface-bright p-4 rounded-lg border border-outline-variant">
+                            class="store-offering flex items-center gap-4 bg-surface-bright p-4 rounded-lg border border-outline-variant">
                             <span
                                 class="material-symbols-outlined text-primary bg-primary/10 p-2 rounded-full">construction</span>
                             <span class="font-label-md text-label-md text-on-surface">Professzionális kárpitos
                                 szerszámok</span>
                         </li>
-                    </ul>
+                        </ul>
+                    </div>
                     <div class="pt-4">
                         <a class="inline-flex w-full items-center justify-center gap-2 rounded-none border border-on-surface bg-on-surface px-8 py-4 font-label-md text-label-md uppercase tracking-wider text-surface-container-lowest transition-colors hover:border-primary hover:bg-primary sm:w-auto"
                             href="shop.html#elerhetoseg">
@@ -592,7 +644,7 @@
                     </div>
                 </div>
                 <div
-                    class="flex-1 relative w-full aspect-square md:aspect-auto md:h-[600px] rounded-xl overflow-hidden border border-outline-variant shadow-lg group">
+                    class="hidden md:block flex-1 relative w-full aspect-square md:aspect-auto md:h-[600px] rounded-xl overflow-hidden border border-outline-variant shadow-lg group">
                     <img alt="Bolt kínálata"
                         class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHxih3I39SErK5qd2aygHPCxMT-fzRpuUK9vianKj3E-ZVcJ2KLIqxDPAtIQDYD9PBCNN9Q86AbBTgE2uj5R2UUi963Ig0hwVKZC0P4wHkoMDrMpNYZlbB7RpfHUMCYvAPRJiqTvs4_FgA3V4w6oda02zFJlGHFL-hlu97pu1F1WuzKrwKOPZQIAcwRDasJOW3485sEwI5HPMOpF9rzl4iGe3N8CX5LOhx8aBOZ7lvTs3dJSkRybkDMA3otzd5Uw2GYaq0nm4mKA" />
