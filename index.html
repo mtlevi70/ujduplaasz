@@ -170,13 +170,29 @@
             position: absolute;
             top: 0;
             background-color: transparent;
-            border-color: transparent;
+            border-bottom: 1px solid transparent;
             backdrop-filter: none;
+            transition: background-color 180ms ease-in-out, border-color 180ms ease-in-out, box-shadow 180ms ease-in-out, transform 300ms ease;
         }
 
         .home-nav [data-nav-link],
         .home-nav [data-nav-icon] {
             color: #ffffff;
+        }
+
+        .home-nav.is-on-content {
+            background-color: var(--color-surface-container-lowest);
+            border-bottom-color: var(--color-outline-variant);
+            box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+        }
+
+        .home-nav.is-on-content [data-nav-link],
+        .home-nav.is-on-content [data-nav-icon] {
+            color: var(--color-on-surface);
+        }
+
+        .home-nav.is-on-content [data-nav-link].border-primary {
+            color: var(--color-primary);
         }
 
         .specialty-description-wrapper {
@@ -289,6 +305,14 @@
 
         .home-nav [data-nav-logo="solid"] {
             display: none;
+        }
+
+        .home-nav.is-on-content [data-nav-logo="hero"] {
+            display: none;
+        }
+
+        .home-nav.is-on-content [data-nav-logo="solid"] {
+            display: block;
         }
 
         .home-hero {
@@ -697,6 +721,34 @@
         </a>
     </nav>
     <script src="mobile-menu.js"></script>
+    <script>
+        (() => {
+            const hero = document.querySelector('.home-hero');
+            const homeNavs = [...document.querySelectorAll('[data-home-nav]')];
+            if (!hero || !homeNavs.length) return;
+
+            const updateNavigationAppearance = () => {
+                const heroBottom = hero.getBoundingClientRect().bottom;
+                homeNavs.forEach((nav) => {
+                    const navBottom = nav.getBoundingClientRect().bottom;
+                    nav.classList.toggle('is-on-content', heroBottom <= navBottom);
+                });
+            };
+
+            let animationFrame;
+            const requestNavigationUpdate = () => {
+                if (animationFrame) return;
+                animationFrame = window.requestAnimationFrame(() => {
+                    animationFrame = undefined;
+                    updateNavigationAppearance();
+                });
+            };
+
+            updateNavigationAppearance();
+            window.addEventListener('scroll', requestNavigationUpdate, { passive: true });
+            window.addEventListener('resize', requestNavigationUpdate);
+        })();
+    </script>
     <script>
         (() => {
             const specialtyCards = [...document.querySelectorAll('[data-specialty-card]')];
