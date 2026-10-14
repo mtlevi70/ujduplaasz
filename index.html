@@ -197,6 +197,24 @@
             opacity: 1;
         }
 
+        .specialty-card.is-specialty-active .specialty-description-wrapper {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+
+        .specialty-card.is-specialty-active .specialty-card-image {
+            scale: 1.05;
+        }
+
+        .specialty-card.is-specialty-active .specialty-card-content {
+            translate: 0 -1.5rem;
+        }
+
+        .specialty-card:focus-visible {
+            outline: 3px solid var(--color-primary);
+            outline-offset: 3px;
+        }
+
         .home-nav [data-nav-logo="solid"] {
             display: none;
         }
@@ -401,7 +419,7 @@
                             területeken is otthonosan mozgunk. A hangfalaktól a falburkolatokig, mindent magas
                             színvonalon kárpitozunk.</p>
                     </div>
-                    <a class="inline-flex items-center gap-2 rounded-none border border-primary bg-primary px-6 py-3 font-label-md text-label-md uppercase tracking-widest text-on-primary transition-colors hover:border-on-surface hover:bg-on-surface"
+                    <a class="hidden md:inline-flex items-center gap-2 rounded-none border border-primary bg-primary px-6 py-3 font-label-md text-label-md uppercase tracking-widest text-on-primary transition-colors hover:border-on-surface hover:bg-on-surface"
                         href="gallery.html">
                         Összes projekt <span class="material-symbols-outlined text-sm">arrow_forward</span>
                     </a>
@@ -409,15 +427,17 @@
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[300px] md:auto-rows-[400px]">
                     <!-- Autókárpitozás -->
                     <div
-                        class="md:col-span-6 breakpoint-table:col-span-8 relative group overflow-hidden rounded-lg bg-surface-container shadow-sm border border-outline-variant block">
+                        class="specialty-card md:col-span-6 breakpoint-table:col-span-8 relative group overflow-hidden rounded-lg bg-surface-container shadow-sm border border-outline-variant block"
+                        data-specialty-card role="button" tabindex="0" aria-expanded="false"
+                        aria-label="Autókárpitozás részleteinek megjelenítése">
                         <img alt="Autókárpitozás"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-in-out group-hover:scale-105"
+                            class="specialty-card-image absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-in-out group-hover:scale-105"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_qZkexTneZBG82Ndl9mPczHeCN-jcllVNWK87B1F1BCYtqvUa3Eg5A-KY10lBH0LIC_PJio75BqGWlkiFCxpWW7eOS6SLq8rMVl-2YV52ivDCd0bC0GIRFkC1NRG1u1NqzpANW_htai4dfAtLKMPpqHqnLyd1gB6K9k6sXg1x528UkbEQhUhqJyBNoEVIElKnPUXh7H4G0uUsQ-qQemA9SdukL_XXFI4dNaXJ-SAqHLkXc0E0F6wpmer4U46W7Th7BYgwbqMznA" />
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-on-surface/90 via-on-surface/40 to-transparent">
                         </div>
                         <div class="absolute bottom-0 left-0 p-4 md:p-8 w-full">
-                            <div class="relative z-10 w-full transition-transform duration-200 ease-in-out md:group-hover:-translate-y-6">
+                            <div class="specialty-card-content relative z-10 w-full transition-transform duration-200 ease-in-out md:group-hover:-translate-y-6">
                                 <span
                                     class="bg-surface-container-lowest/20 backdrop-blur-md text-surface-container-lowest font-label-md text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block border border-surface-container-lowest/30">Precizitás</span>
                                 <h3 class="font-headline-md text-headline-md text-on-primary uppercase tracking-tight">
@@ -432,15 +452,17 @@
                     </div>
                     <!-- Hajókárpitozás -->
                     <div
-                        class="md:col-span-6 breakpoint-table:col-span-4 relative group overflow-hidden rounded-lg bg-surface-container shadow-sm border border-outline-variant block">
+                        class="specialty-card md:col-span-6 breakpoint-table:col-span-4 relative group overflow-hidden rounded-lg bg-surface-container shadow-sm border border-outline-variant block"
+                        data-specialty-card role="button" tabindex="0" aria-expanded="false"
+                        aria-label="Hajókárpitozás részleteinek megjelenítése">
                         <img alt="Hajókárpitozás"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-in-out group-hover:scale-105"
+                            class="specialty-card-image absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-in-out group-hover:scale-105"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGkX843G54xbVIO_OlRZ5ukT7Wl3J0w3vrCHVNKwyKbQEbVFHHMu0S-bzIsrLqBsmlfUDYcR9oliloEvBJBG1jhQXl11Vp2sF325842AyxRnJfVCGoNIp-zLza3IIqwR68c5XRCwajGFyQhrCHpIwcLUIN3irAuiVN1lil6j7N4Vht0BUDM9x5llKvekGew06VYsWW3P7ih2VgMPhls0WVnxXILq4A0HOE5Xm5O3azlh2rjBtwatFxR8xJIBXQ0fKM_VNZTuFvaw" />
                         <div
                             class="absolute inset-0 bg-gradient-to-t from-on-surface/90 via-on-surface/40 to-transparent">
                         </div>
                         <div class="absolute bottom-0 left-0 p-4 md:p-6 w-full">
-                            <div class="relative z-10 w-full min-w-0 transition-transform duration-200 ease-in-out md:group-hover:-translate-y-6">
+                            <div class="specialty-card-content relative z-10 w-full min-w-0 transition-transform duration-200 ease-in-out md:group-hover:-translate-y-6">
                                 <span
                                     class="bg-surface-container-lowest/20 backdrop-blur-md text-surface-container-lowest font-label-md text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block border border-surface-container-lowest/30">Vízálló</span>
                                 <h3 class="font-headline-md text-headline-md text-on-primary uppercase tracking-tight">
@@ -454,15 +476,17 @@
                     </div>
                     <!-- Egyházi bútorok -->
                     <div
-                        class="md:col-span-12 relative group overflow-hidden rounded-lg bg-surface-container shadow-sm border border-outline-variant md:h-[400px] block">
+                        class="specialty-card md:col-span-12 relative group overflow-hidden rounded-lg bg-surface-container shadow-sm border border-outline-variant md:h-[400px] block"
+                        data-specialty-card role="button" tabindex="0" aria-expanded="false"
+                        aria-label="Egyházi bútorok részleteinek megjelenítése">
                         <img alt="Egyházi bútorok"
-                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-in-out group-hover:scale-105"
+                            class="specialty-card-image absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-in-out group-hover:scale-105"
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWcjMbJ88kadFMZL1BorFhU6ALlu3AtFcFTrKPMMN4KvB3GHRLrObbF5ZEROQAR9tMypb1143RntAWpWRRm5rvq7Klis3-l9JiYe_m0qlWZgc2h0ZSp3EC42WJWy18gpd6vcWwdV5NMY0J-9Ue1br2wJWetdqkQPG3KoKy12gzAP95W7xdqfgyX5Aj6joRdwIAaWcxkVbRT3UdN-YzAASyYSEN17oEhxIOlgnbeRvtJFHxzmHRGiu6-kOuRvUM_EHDMFAqImgq4A" />
                         <div
                             class="absolute inset-0 bg-gradient-to-r from-on-surface/90 via-on-surface/60 to-transparent">
                         </div>
                         <div
-                            class="absolute bottom-0 left-0 p-4 md:p-12 max-w-xl w-full transition-transform duration-200 ease-in-out md:group-hover:-translate-y-6">
+                            class="specialty-card-content absolute bottom-0 left-0 p-4 md:p-12 max-w-xl w-full transition-transform duration-200 ease-in-out md:group-hover:-translate-y-6">
                             <span
                                 class="bg-surface-container-lowest/20 backdrop-blur-md text-surface-container-lowest font-label-md text-xs px-3 py-1 rounded-full uppercase tracking-wider mb-3 inline-block border border-surface-container-lowest/30 w-max">Restauráció</span>
                             <h3
@@ -475,6 +499,12 @@
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="mt-8 flex justify-center md:hidden">
+                    <a class="inline-flex items-center gap-2 rounded-none border border-primary bg-primary px-6 py-3 font-label-md text-label-md uppercase tracking-widest text-on-primary transition-colors hover:border-on-surface hover:bg-on-surface"
+                        href="gallery.html">
+                        Összes projekt <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -589,6 +619,31 @@
         </a>
     </nav>
     <script src="mobile-menu.js"></script>
+    <script>
+        (() => {
+            const specialtyCards = [...document.querySelectorAll('[data-specialty-card]')];
+
+            const setCardState = (card, expanded) => {
+                card.classList.toggle('is-specialty-active', expanded);
+                card.setAttribute('aria-expanded', String(expanded));
+            };
+
+            const toggleCard = (selectedCard) => {
+                const shouldExpand = !selectedCard.classList.contains('is-specialty-active');
+                specialtyCards.forEach((card) => setCardState(card, card === selectedCard && shouldExpand));
+            };
+
+            specialtyCards.forEach((card) => {
+                card.addEventListener('click', () => toggleCard(card));
+                card.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        toggleCard(card);
+                    }
+                });
+            });
+        })();
+    </script>
 </body>
 
 </html>
