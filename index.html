@@ -215,6 +215,32 @@
             outline-offset: 3px;
         }
 
+        .opening-status {
+            transition: border-color 180ms ease-in-out;
+        }
+
+        .opening-status-dot {
+            transition: background-color 180ms ease-in-out;
+        }
+
+        .opening-status.is-open {
+            border-color: #16a34a;
+        }
+
+        .opening-status.is-open .opening-status-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            background-color: #16a34a;
+        }
+
+        .opening-status.is-closed {
+            border-color: #dc2626;
+        }
+
+        .opening-status.is-closed .opening-status-dot {
+            animation: none;
+            background-color: #dc2626;
+        }
+
         .home-nav [data-nav-logo="solid"] {
             display: none;
         }
@@ -514,10 +540,10 @@
             id="uzlet">
             <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
                 <div class="flex-1 space-y-8 z-10">
-                    <div
-                        class="inline-flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant">
-                        <div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-                        <span
+                    <div data-opening-status
+                        class="opening-status inline-flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant">
+                        <div data-opening-status-dot class="opening-status-dot w-2 h-2 rounded-full bg-primary"></div>
+                        <span data-opening-status-label aria-live="polite"
                             class="font-label-md text-label-md text-on-surface uppercase tracking-wider text-xs">Nyitva
                             tartunk</span>
                     </div>
@@ -642,6 +668,50 @@
                     }
                 });
             });
+        })();
+    </script>
+    <script>
+        (() => {
+            const status = document.querySelector('[data-opening-status]');
+            const label = document.querySelector('[data-opening-status-label]');
+            if (!status || !label) return;
+
+            const hoursByDay = {
+                Mon: [8 * 60, 17 * 60],
+                Tue: [8 * 60, 17 * 60],
+                Wed: [8 * 60, 17 * 60],
+                Thu: [8 * 60, 17 * 60],
+                Fri: [8 * 60, 17 * 60],
+                Sat: [8 * 60, 12 * 60],
+            };
+            const budapestTime = new Intl.DateTimeFormat('en-GB', {
+                timeZone: 'Europe/Budapest',
+                weekday: 'short',
+                hour: '2-digit',
+                minute: '2-digit',
+                hourCycle: 'h23',
+            });
+
+            const updateOpeningStatus = () => {
+                const parts = Object.fromEntries(
+                    budapestTime.formatToParts(new Date())
+                        .filter(({ type }) => type !== 'literal')
+                        .map(({ type, value }) => [type, value]),
+                );
+                const openingHours = hoursByDay[parts.weekday];
+                const currentMinute = Number(parts.hour) * 60 + Number(parts.minute);
+                const isOpen = Boolean(openingHours
+                    && currentMinute >= openingHours[0]
+                    && currentMinute < openingHours[1]);
+
+                status.classList.toggle('is-open', isOpen);
+                status.classList.toggle('is-closed', !isOpen);
+                status.setAttribute('aria-label', isOpen ? 'Jelenleg nyitva' : 'Jelenleg zárva');
+                label.textContent = isOpen ? 'Nyitva vagyunk' : 'Jelenleg zárva';
+            };
+
+            updateOpeningStatus();
+            window.setInterval(updateOpeningStatus, 60 * 1000);
         })();
     </script>
 </body>
